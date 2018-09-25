@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     Vector3 MOVEX = new Vector3(0.64f, 0, 0); // x軸方向に１マス移動するときの距離
     //Vector3 MOVEY = new Vector3(0, 0.64f, 0); // y軸方向に１マス移動するときの距離
@@ -16,30 +17,46 @@ public class PlayerController : MonoBehaviour {
 
     int hantei = 1;
 
+    bool move = false;
+
     // Use this for initialization
-    void Start () {
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        
+    void Start()
+    {
 
     }
 
-    public void playerstart(){
-        timeElapsed += Time.deltaTime;
-
-        if (timeElapsed >= timeOut)
+    // Update is called once per frame
+    void Update()
+    {
+        if (move)
         {
-            // Do anything
-            if(hantei == 1)
-            {
-                target = transform.position + MOVEX;
-                transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
-            }
-
-            timeElapsed = 0.0f;
+            Move();
         }
+    }
+
+    void Move()
+    {
+        
+
+            timeElapsed += Time.deltaTime;
+
+            if (timeElapsed >= timeOut)
+            {
+                // Do anything
+                if (hantei == 1)
+                {
+                    target = transform.position + MOVEX;
+                    transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
+                }
+
+                timeElapsed = 0.0f;
+            }
+        
+    }
+    public void playerstart()
+    {
+        move = true;
+
+            
     }
 }

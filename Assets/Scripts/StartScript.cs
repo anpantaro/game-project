@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartScript : MonoBehaviour {
 
-    
+    public GameObject gameobj;
 
     // Use this for initialization
     void Start () {
@@ -16,9 +16,4 @@ public class StartScript : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void OnClick()
-    {
-
-    }
 }
