@@ -5,29 +5,38 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    Vector3 MOVEX = new Vector3(0.64f, 0, 0); // x軸方向に１マス移動するときの距離
-    //Vector3 MOVEY = new Vector3(0, 0.64f, 0); // y軸方向に１マス移動するときの距離
-
-    float step = 2f;     // 移動速度
-    Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
-    Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
+    float MOVEX = 0.0f; // x軸方向に１マス移動するときの距離
+    float MOVEY = 0.0f; // y軸方向に１マス移動するときの距離
+    float kyori = 0.0f;
+    float haba = 1.5f;
+    float tate = 1;
+    float yoko = 0;
+    
+    public float speed = 3.0f;
+    //Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
+    //Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
 
     public float timeOut;
     private float timeElapsed;
 
-    int hantei = 1;
+    Hantei hantei = Hantei.Right;
 
     bool move = false;
+    bool osita = false;
 
     // Use this for initialization
     void Start()
     {
-
+        //target = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (osita && !move)
+        {
+            move = true;
+        }
         if (move)
         {
             Move();
@@ -36,27 +45,49 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+
+
+        /*timeElapsed += Time.deltaTime;
+
+        if (timeElapsed >= timeOut)
+        {
+            switch (hantei)
+        {
+            case Hantei.Right:
+                target = transform.position + MOVEX;
+                transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
+                break;
+        }
+
+            timeElapsed = 0.0f;
+        }*/
         
-
-            timeElapsed += Time.deltaTime;
-
-            if (timeElapsed >= timeOut)
+            switch (hantei)
             {
-                // Do anything
-                if (hantei == 1)
-                {
-                    target = transform.position + MOVEX;
-                    transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
-                }
-
-                timeElapsed = 0.0f;
+                case Hantei.Right:
+                    transform.position += transform.right * Time.deltaTime;
+                    kyori +=Time.deltaTime;
+                    if (kyori >= haba)
+                    {
+                        yoko++;
+                        transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
+                         kyori = 0.0f;
+                         move = false;
+                    }
+                     break;
             }
+            
         
     }
     public void playerstart()
     {
-        move = true;
-
-            
+        osita = true;
     }
+}
+enum Hantei
+{
+    Right,
+    Left,
+    Up,
+    Down
 }
