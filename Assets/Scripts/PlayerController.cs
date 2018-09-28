@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     float haba = 1.5f;
     float tate = 1;
     float yoko = 0;
+    float okuyuki = 1.5f;
     
     public float speed = 3.0f;
     //Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
+
+
     }
 
     void Move()
@@ -76,13 +79,24 @@ public class PlayerController : MonoBehaviour
                     }
                      break;
             }
-            
+
         
+
+
     }
     public void playerstart()
     {
         osita = true;
     }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "down")
+        {
+            hantei = Hantei.Down;
+        }
+    }
+
 }
 enum Hantei
 {
