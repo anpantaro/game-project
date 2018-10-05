@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (move)
         {
             Move();
+
         }
 
 
@@ -65,22 +66,32 @@ public class PlayerController : MonoBehaviour
             timeElapsed = 0.0f;
         }*/
         
-            switch (hantei)
-            {
-                case Hantei.Right:
-                    transform.position += transform.right * Time.deltaTime;
-                    kyori +=Time.deltaTime;
-                    if (kyori >= haba)
-                    {
-                        yoko++;
-                        transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
-                         kyori = 0.0f;
-                         move = false;
-                    }
-                     break;
-            }
+        switch (hantei)
+        {
+            case Hantei.Right:
+                transform.position += transform.right * Time.deltaTime;
+                kyori +=Time.deltaTime;
+                if (kyori >= haba)
+                {
+                    yoko++;
+                    transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
+                    kyori = 0.0f;
+                    move = false;
+                }
+                 break;
+            case Hantei.Down:
+                transform.position -= transform.up * Time.deltaTime;
+                kyori += Time.deltaTime;
+                if (kyori >= haba)
+                {
+                    tate--;
+                    transform.position = new Vector3(haba * yoko , 1.0f, haba * tate);
+                    kyori = 0.0f;
+                    move = false;
+                }
+                    break;
 
-        
+        }
 
 
     }
@@ -91,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "down")
+        if (other.gameObject.tag == "down" )
         {
             hantei = Hantei.Down;
         }
