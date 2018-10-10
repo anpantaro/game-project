@@ -1,0 +1,7 @@
+Collision
+—¼•û
+rigidbody Collider‚ÌIsTrriger‚Â‚¯‚¿‚á‚¾‚ß
+
+trriger
+•Ð•ûtrigger ‚Â‚¯‚é‚»‚Ì•Ð•û‚Írigidbody‚È‚­‚Ä‚¢‚¢
+‚Ç‚¤‚¹Istrigger‚Â‚¯‚½‚çrigidbody–³—Í‰»‚³‚ê‚é‚©‚ç

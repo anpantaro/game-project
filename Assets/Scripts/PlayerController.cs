@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     float haba = 1.5f;
     float tate = 1;
     float yoko = 0;
-    float okuyuki = 1.5f;
+
     
     public float speed = 3.0f;
     //Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         if (move)
         {
             Move();
-
+            
         }
 
 
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
                     break;
 
         }
-
+        
 
     }
     public void playerstart()
@@ -100,15 +100,22 @@ public class PlayerController : MonoBehaviour
         osita = true;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "down" )
+        //string layerName = LayerMask.LayerToName(other.gameObject.layer);
+        
+        if (other.gameObject.tag == "down")
         {
-            hantei = Hantei.Down;
+            Hantei hantei = Hantei.Down;
+            Debug.Log("hit");
         }
     }
 
 }
+
+
+
+
 enum Hantei
 {
     Right,
