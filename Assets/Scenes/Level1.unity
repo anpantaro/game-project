@@ -1081,39 +1081,6 @@ Prefab:
       propertyPath: m_Name
       value: downyazirusi
       objectReference: {fileID: 0}
-    - target: {fileID: 65923883964356108, guid: 22c57828d98b5a641bbec4148322ee8d,
-        type: 2}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65923883964356108, guid: 22c57828d98b5a641bbec4148322ee8d,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65923883964356108, guid: 22c57828d98b5a641bbec4148322ee8d,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695814522715690, guid: 22c57828d98b5a641bbec4148322ee8d, type: 2}
-      propertyPath: m_TagString
-      value: down
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695814522715690, guid: 22c57828d98b5a641bbec4148322ee8d, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 65923883964356108, guid: 22c57828d98b5a641bbec4148322ee8d,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65923883964356108, guid: 22c57828d98b5a641bbec4148322ee8d,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22c57828d98b5a641bbec4148322ee8d, type: 2}
   m_IsPrefabAsset: 0
@@ -2049,7 +2016,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.01, y: 1, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1307737671
 MeshRenderer:

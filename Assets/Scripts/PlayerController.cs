@@ -80,12 +80,13 @@ public class PlayerController : MonoBehaviour
                 }
                  break;
             case Hantei.Down:
-                transform.position -= transform.up * Time.deltaTime;
+                
+                transform.position -= transform.forward * Time.deltaTime;
                 kyori += Time.deltaTime;
                 if (kyori >= haba)
                 {
                     tate--;
-                    transform.position = new Vector3(haba * yoko , 1.0f, haba * tate);
+                    transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
                     kyori = 0.0f;
                     move = false;
                 }
@@ -106,8 +107,9 @@ public class PlayerController : MonoBehaviour
         
         if (other.gameObject.tag == "down")
         {
-            Hantei hantei = Hantei.Down;
+            hantei = Hantei.Down;
             Debug.Log("hit");
+            yoko++;
         }
     }
 
