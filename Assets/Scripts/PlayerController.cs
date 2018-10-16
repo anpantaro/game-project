@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
     float haba = 1.5f;
     float tate = 1;
     float yoko = 0;
+    float Tmp;
 
-    
+
+
     public float speed = 3.0f;
     //Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
     //Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
@@ -34,10 +36,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (osita && !move)
-        {
-            move = true;
-        }
         if (move)
         {
             Move();
@@ -71,9 +69,11 @@ public class PlayerController : MonoBehaviour
             case Hantei.Right:
                 transform.position += transform.right * Time.deltaTime;
                 kyori +=Time.deltaTime;
+                
                 if (kyori >= haba)
                 {
                     yoko++;
+                    Tmp = yoko;
                     transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
                     kyori = 0.0f;
                     move = false;
@@ -99,19 +99,47 @@ public class PlayerController : MonoBehaviour
     public void playerstart()
     {
         osita = true;
+        move = true;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        //string layerName = LayerMask.LayerToName(other.gameObject.layer);
-        
-        if (other.gameObject.tag == "down")
+        if (osita && !move)
         {
-            hantei = Hantei.Down;
-            Debug.Log("hit");
-            yoko++;
+            switch (other.gameObject.tag)
+            {
+                case "yuka":
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+                case "down":
+                    hantei = Hantei.Down;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+            }
         }
+        //if (!move && other.gameObject.tag == "down")
+        //{
+        //    hantei = Hantei.Down;
+        //    Debug.Log("hit");
+            
+        //}
     }
+
+    //void Adjust()
+    //{
+    //    switch (hantei)
+    //    {
+    //        case Hantei.Right:
+    //            yoko++;
+    //            break;
+    //        case Hantei.Left:
+    //            yoko--;
+    //            break;
+
+    //    }
+    //}
 
 }
 
