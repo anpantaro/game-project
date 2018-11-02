@@ -79,6 +79,30 @@ public class PlayerController : MonoBehaviour
                     move = false;
                 }
                  break;
+            case Hantei.Left:
+
+                transform.position -= transform.right * Time.deltaTime;
+                kyori += Time.deltaTime;
+                if (kyori >= haba)
+                {
+                    yoko--;
+                    transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
+                    kyori = 0.0f;
+                    move = false;
+                }
+                break;
+            case Hantei.Up:
+
+                transform.position += transform.forward * Time.deltaTime;
+                kyori += Time.deltaTime;
+                if (kyori >= haba)
+                {
+                    tate++;
+                    transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
+                    kyori = 0.0f;
+                    move = false;
+                }
+                break;
             case Hantei.Down:
                 
                 transform.position -= transform.forward * Time.deltaTime;
@@ -90,7 +114,7 @@ public class PlayerController : MonoBehaviour
                     kyori = 0.0f;
                     move = false;
                 }
-                    break;
+                break;
 
         }
         
@@ -112,8 +136,23 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("hit");
                     move = true;
                     break;
+                case "up":
+                    hantei = Hantei.Up;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
                 case "down":
                     hantei = Hantei.Down;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+                case "right":
+                    hantei = Hantei.Right;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+                case "left":
+                    hantei = Hantei.Left;
                     Debug.Log("hit");
                     move = true;
                     break;
