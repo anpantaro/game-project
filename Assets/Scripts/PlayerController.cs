@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -132,29 +133,34 @@ public class PlayerController : MonoBehaviour
         {
             switch (other.gameObject.tag)
             {
-                case "yuka":
+                case "Normal":
                     Debug.Log("hit");
                     move = true;
                     break;
-                case "up":
-                    hantei = Hantei.Up;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "down":
-                    hantei = Hantei.Down;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "right":
+                case "Right":
                     hantei = Hantei.Right;
                     Debug.Log("hit");
                     move = true;
                     break;
-                case "left":
+                case "Left":
                     hantei = Hantei.Left;
                     Debug.Log("hit");
                     move = true;
+                    break;
+                case "Up":
+                    hantei = Hantei.Up;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+                case "Down":
+                    hantei = Hantei.Down;
+                    Debug.Log("hit");
+                    move = true;
+                    break;
+                case "Goal":
+                    
+                    Debug.Log("Goal");
+                    SceneManager.LoadScene("Goal");
                     break;
             }
         }

@@ -10,6 +10,12 @@ TagManager:
   - up
   - right
   - left
+  - Normal
+  - Right
+  - Left
+  - Up
+  - Down
+  - Goal
   layers:
   - Default
   - TransparentFX

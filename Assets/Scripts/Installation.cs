@@ -7,23 +7,34 @@ public class Installation : MonoBehaviour {
 
     public Camera camera;
     [SerializeField] Material[] matArray;
-    public static Gimmick gimmick;
+    public static Gimmick gimmick = Gimmick.Normal;
+    public static Gimmick gimmickButton = Gimmick.Normal;
     public string tag;
     public Material mat;
+
+    int[] remaining;
 
 
     // Use this for initialization
     void Start ()
     {
+        remaining = new int[4]
+        {
+            2,
+            2,
+            2,
+            2
+        };
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (gimmick != Gimmick.None)
+        if (gimmickButton != Gimmick.Normal)
         {
-            tag = gimmick.ToString();
-            mat = matArray[(int)gimmick];
-            gimmick = Gimmick.None;
+            gimmick = gimmickButton;
+            tag = gimmickButton.ToString();
+            mat = matArray[(int)gimmickButton];
+            gimmickButton = Gimmick.Normal;
         }
         TouchJudg();
 
@@ -44,9 +55,16 @@ public class Installation : MonoBehaviour {
                 {
 
                     // レイに当たったオブジェクトに何かをする
-                    hit.transform.tag = tag;
-                    hit.collider.GetComponent<Renderer>().material = mat;
-
+                    if(hit.transform.tag != "Player" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    {
+                        hit.transform.tag = tag;
+                        hit.collider.GetComponent<Renderer>().material = mat;
+                        remaining[(int)gimmick]--;
+                        gimmick = Gimmick.Normal;
+                        tag = gimmick.ToString();
+                        mat = matArray[(int)gimmick];
+                    }
+                    
                 }
                 break;
         }
@@ -59,5 +77,5 @@ public enum Gimmick
     Left,
     Up,
     Down,
-    None
+    Normal
 }

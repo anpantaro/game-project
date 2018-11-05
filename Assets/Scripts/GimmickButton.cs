@@ -15,13 +15,8 @@ public class GimmickButton : MonoBehaviour
     {
 
     }
-    public void Button(string gimmick)
+    public void Button(int gimmickNum)
     {
-        switch (gimmick)
-        {
-            case "Up":
-                Installation.gimmick = Gimmick.Up;
-                break;
-        }
+        Installation.gimmickButton = (Gimmick)gimmickNum;
     }
 }
