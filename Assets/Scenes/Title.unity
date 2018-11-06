@@ -488,7 +488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u65B9\u5411\u97F3\u75F4"
+  m_Text: houkouonti
 --- !u!222 &1460767575
 CanvasRenderer:
   m_ObjectHideFlags: 0
