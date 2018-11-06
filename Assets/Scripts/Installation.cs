@@ -12,8 +12,15 @@ public class Installation : MonoBehaviour {
     public string tag;
     public Material mat;
 
-    int[] remaining;
+    public PlayerController playercotroller;
 
+    private int[] remaining;
+
+    public int[] Remaining
+    {
+        get { return this.remaining; }
+        private set { this.remaining = value; }
+    }
 
     // Use this for initialization
     void Start ()
@@ -25,18 +32,27 @@ public class Installation : MonoBehaviour {
             2,
             2
         };
+
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (gimmickButton != Gimmick.Normal)
+        bool ositaka;
+        ositaka = playercotroller.Osita;
+        
+        if (ositaka)
         {
-            gimmick = gimmickButton;
-            tag = gimmickButton.ToString();
-            mat = matArray[(int)gimmickButton];
-            gimmickButton = Gimmick.Normal;
+            if (gimmickButton != Gimmick.Normal)
+            {
+                gimmick = gimmickButton;
+                tag = gimmickButton.ToString();
+                mat = matArray[(int)gimmickButton];
+                gimmickButton = Gimmick.Normal;
+            }
+            TouchJudg();
         }
-        TouchJudg();
+        
 
     }
 
@@ -55,7 +71,7 @@ public class Installation : MonoBehaviour {
                 {
 
                     // レイに当たったオブジェクトに何かをする
-                    if(hit.transform.tag != "Player" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
                     {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;

@@ -26,7 +26,13 @@ public class PlayerController : MonoBehaviour
     Hantei hantei = Hantei.Right;
 
     bool move = false;
-    bool osita = false;
+    private bool osita = false;
+
+    public bool Osita
+    {
+        get { return this.osita; }  //取得用
+        private set { this.osita = value; }
+    }
 
     // Use this for initialization
     void Start()
