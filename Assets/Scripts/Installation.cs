@@ -71,7 +71,7 @@ public class Installation : MonoBehaviour {
                 {
 
                     // レイに当たったオブジェクトに何かをする
-                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && hit.transform.tag != "Drop" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
                     {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;

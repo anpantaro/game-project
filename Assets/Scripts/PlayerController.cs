@@ -168,6 +168,10 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Goal");
                     SceneManager.LoadScene("Goal");
                     break;
+                case "Drop":
+                    GetComponent<Rigidbody>().useGravity = true;
+                    break;
+                
             }
         }
         //if (!move && other.gameObject.tag == "down")

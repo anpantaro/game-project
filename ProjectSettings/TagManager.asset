@@ -16,6 +16,8 @@ TagManager:
   - Up
   - Down
   - Goal
+  - Drop
+  - Destroy
   layers:
   - Default
   - TransparentFX
