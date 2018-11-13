@@ -8,6 +8,7 @@ public class Installation : MonoBehaviour {
 
     public Camera camera;
     [SerializeField] Material[] matArray;
+    [SerializeField] Text[] text;
     public static Gimmick gimmick = Gimmick.Normal;
     public static Gimmick gimmickButton = Gimmick.Normal;
     public string tag;
@@ -34,8 +35,11 @@ public class Installation : MonoBehaviour {
             2,
             2
         };
+        for (int i = 0; i < 4; i++)
+        {
+            text[i].text = remaining[i].ToString();
+        }
 
-        
     }
 	
 	// Update is called once per frame
@@ -52,7 +56,7 @@ public class Installation : MonoBehaviour {
                 mat = matArray[(int)gimmickButton];
                 selecting[tmp].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
                 tmp = (int)gimmickButton;
-                selecting[(int)gimmickButton].GetComponentInChildren<Image>().color = new Color(231.0f / 255.0f, 20.0f / 255.0f, 20.0f / 255.0f, 255.0f / 255.0f);
+                selecting[(int)gimmickButton].GetComponentInChildren<Image>().color = new Color(189.0f / 255.0f, 241.0f / 255.0f, 115.0f / 255.0f, 255.0f / 255.0f);
                 gimmickButton = Gimmick.Normal;
                 
             }
@@ -83,6 +87,7 @@ public class Installation : MonoBehaviour {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;
                         remaining[(int)gimmick]--;
+                        text[(int)gimmick].text = remaining[(int)gimmick].ToString();
                         selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
                         gimmick = Gimmick.Normal;
                         tag = gimmick.ToString();
