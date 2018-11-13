@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GodTouches;
 
 public class Installation : MonoBehaviour {
@@ -16,11 +17,12 @@ public class Installation : MonoBehaviour {
 
     private int[] remaining;
 
-    public int[] Remaining
-    {
-        get { return this.remaining; }
-        private set { this.remaining = value; }
-    }
+    float maxDistance = 15;
+
+
+    [SerializeField] GameObject[] selecting;
+
+    int tmp = 0;
 
     // Use this for initialization
     void Start ()
@@ -48,7 +50,11 @@ public class Installation : MonoBehaviour {
                 gimmick = gimmickButton;
                 tag = gimmickButton.ToString();
                 mat = matArray[(int)gimmickButton];
+                selecting[tmp].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+                tmp = (int)gimmickButton;
+                selecting[(int)gimmickButton].GetComponentInChildren<Image>().color = new Color(231.0f / 255.0f, 20.0f / 255.0f, 20.0f / 255.0f, 255.0f / 255.0f);
                 gimmickButton = Gimmick.Normal;
+                
             }
             TouchJudg();
         }
@@ -67,15 +73,17 @@ public class Installation : MonoBehaviour {
                 RaycastHit hit;
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit,maxDistance))
                 {
 
+
                     // レイに当たったオブジェクトに何かをする
-                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && hit.transform.tag != "Drop" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && hit.transform.tag != "Drop" && hit.transform.tag != "Destroy" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
                     {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;
                         remaining[(int)gimmick]--;
+                        selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
                         gimmick = Gimmick.Normal;
                         tag = gimmick.ToString();
                         mat = matArray[(int)gimmick];

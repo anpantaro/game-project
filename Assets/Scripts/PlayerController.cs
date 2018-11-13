@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
         private set { this.osita = value; }
     }
 
+    public GameObject start;
+
     // Use this for initialization
     void Start()
     {
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         osita = true;
         move = true;
+        start.SetActive(false);
     }
 
     void OnTriggerStay(Collider other)
@@ -170,6 +173,10 @@ public class PlayerController : MonoBehaviour
                     break;
                 case "Drop":
                     GetComponent<Rigidbody>().useGravity = true;
+                    break;
+                case "Destroy":
+                    Scene loadScene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(loadScene.name);
                     break;
                 
             }

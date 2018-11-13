@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GodTouches;
 
 public class GimmickButton : MonoBehaviour
 {
+
+    public PlayerController playerController;
+    
+
     // Use this for initialization
     void Start()
     {
@@ -17,6 +22,11 @@ public class GimmickButton : MonoBehaviour
     }
     public void Button(int gimmickNum)
     {
-        Installation.gimmickButton = (Gimmick)gimmickNum;
+        bool ositaka = playerController.Osita;
+        if (ositaka)
+        {
+            Installation.gimmickButton = (Gimmick)gimmickNum;
+        }
+        
     }
 }
