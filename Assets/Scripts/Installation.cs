@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GodTouches;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Installation : MonoBehaviour {
 
@@ -54,9 +56,17 @@ public class Installation : MonoBehaviour {
                 gimmick = gimmickButton;
                 tag = gimmickButton.ToString();
                 mat = matArray[(int)gimmickButton];
-                selecting[tmp].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+                if(remaining[tmp] != 0)
+                {
+                    selecting[tmp].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+                }
+
                 tmp = (int)gimmickButton;
-                selecting[(int)gimmickButton].GetComponentInChildren<Image>().color = new Color(189.0f / 255.0f, 241.0f / 255.0f, 115.0f / 255.0f, 255.0f / 255.0f);
+                if (remaining[(int)gimmickButton] != 0)
+                {
+                    selecting[(int)gimmickButton].GetComponentInChildren<Image>().color = new Color(189.0f / 255.0f, 241.0f / 255.0f, 115.0f / 255.0f, 255.0f / 255.0f);
+                }
+                
                 gimmickButton = Gimmick.Normal;
                 
             }
@@ -72,11 +82,23 @@ public class Installation : MonoBehaviour {
         var pos = GodTouch.GetPosition();
 
         switch (phase)
+        //if(Input.GetMouseButtonDown(0))
         {
             case GodPhase.Began: // 押された
                 RaycastHit hit;
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
+                
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    break; 
+                }
+
+                if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    // かぶさってるので処理キャンセル（タップver）
+                    break;
+                }
                 if (Physics.Raycast(ray, out hit,maxDistance))
                 {
 
@@ -88,7 +110,15 @@ public class Installation : MonoBehaviour {
                         hit.collider.GetComponent<Renderer>().material = mat;
                         remaining[(int)gimmick]--;
                         text[(int)gimmick].text = remaining[(int)gimmick].ToString();
-                        selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+                        if (remaining[(int)gimmick ] == 0)
+                        {
+                            selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 100.0f / 255.0f);
+                        }
+                        else
+                        {
+                            selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+                        }
+                        
                         gimmick = Gimmick.Normal;
                         tag = gimmick.ToString();
                         mat = matArray[(int)gimmick];

@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject start;
 
+    public GameObject reset;
+
     // Use this for initialization
     void Start()
     {
@@ -134,6 +136,13 @@ public class PlayerController : MonoBehaviour
         osita = true;
         move = true;
         start.SetActive(false);
+        reset.SetActive(true);
+    }
+
+    public void Stagereset()
+    {
+        Scene loadScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(loadScene.name);
     }
 
     void OnTriggerStay(Collider other)
