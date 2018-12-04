@@ -18,7 +18,7 @@ public class Installation : MonoBehaviour {
 
     public PlayerController playercotroller;
 
-    private int[] remaining;
+    [SerializeField] int[] remaining;
 
     float maxDistance = 15;
 
@@ -30,16 +30,20 @@ public class Installation : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        remaining = new int[4]
+        /*remaining = new int[4]
         {
             2,
             2,
             2,
             2
-        };
+        };*/
         for (int i = 0; i < 4; i++)
         {
             text[i].text = remaining[i].ToString();
+            if(remaining[i] == 0)
+            {
+                selecting[i].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 100.0f / 255.0f);
+            }
         }
 
     }
@@ -104,7 +108,7 @@ public class Installation : MonoBehaviour {
 
 
                     // レイに当たったオブジェクトに何かをする
-                    if(hit.transform.tag != "Player" && hit.transform.tag != "Goal" && hit.transform.tag != "Drop" && hit.transform.tag != "Destroy" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    if(hit.transform.tag == "Normal"  && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
                     {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;

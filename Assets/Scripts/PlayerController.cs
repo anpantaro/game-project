@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -25,8 +26,13 @@ public class PlayerController : MonoBehaviour
 
     Hantei hantei = Hantei.Right;
 
+   
+
     bool move = false;
     private bool osita = false;
+
+    private bool way = false;
+    
 
     public bool Osita
     {
@@ -34,19 +40,38 @@ public class PlayerController : MonoBehaviour
         private set { this.osita = value; }
     }
 
+    
+
     public GameObject start;
 
     public GameObject reset;
+
+    
+
+
+
+    public string right_Side;
+
+    private int put = 0;
+
+    public int Put
+    {
+        get { return this.put; }
+        private set { this.put = value; }
+    }
 
     // Use this for initialization
     void Start()
     {
         //target = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (move)
         {
             Move();
@@ -147,48 +172,92 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (osita && !move)
+        
+        if (osita && !move )
         {
-            switch (other.gameObject.tag)
+            if (!way)
             {
-                case "Normal":
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "Right":
-                    hantei = Hantei.Right;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "Left":
-                    hantei = Hantei.Left;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "Up":
-                    hantei = Hantei.Up;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "Down":
-                    hantei = Hantei.Down;
-                    Debug.Log("hit");
-                    move = true;
-                    break;
-                case "Goal":
-                    
-                    Debug.Log("Goal");
-                    SceneManager.LoadScene("Goal");
-                    break;
-                case "Drop":
-                    GetComponent<Rigidbody>().useGravity = true;
-                    break;
-                case "Destroy":
-                    Scene loadScene = SceneManager.GetActiveScene();
-                    SceneManager.LoadScene(loadScene.name);
-                    break;
-                
+                switch (other.gameObject.tag)
+                {
+
+                    case "Normal":
+                        Debug.Log("hit");
+                        move = true;
+                        break;
+                    case "Right":
+                        hantei = Hantei.Right;
+                        put = 0;
+                        Debug.Log("hit");
+                        move = true;
+                        break;
+                    case "Left":
+                        hantei = Hantei.Left;
+                        put = 1;
+                        Debug.Log("hit");
+                        move = true;
+                        break;
+                    case "Up":
+                        hantei = Hantei.Up;
+                        put = 2;
+                        Debug.Log("hit");
+                        move = true;
+                        break;
+                    case "Down":
+                        hantei = Hantei.Down;
+                        Debug.Log("hit");
+                        put = 3;
+                        move = true;
+                        break;
+
+                    case "Goal":
+
+                        Debug.Log("Goal");
+                        SceneManager.LoadScene("Goal");
+                        break;
+                    case "Drop":
+                        GetComponent<Rigidbody>().useGravity = true;
+                        break;
+                    case "Destroy":
+                        Scene loadScene = SceneManager.GetActiveScene();
+                        SceneManager.LoadScene(loadScene.name);
+                        break;
+
+
+                }
             }
+            else
+            {
+                
+                switch (right_Side)
+                {
+                    case "Right":
+                        hantei = Hantei.Right;
+                        put = 0;
+                        move = true;
+                        way = false;
+                        break;
+                    case "Left":
+                        hantei = Hantei.Left;
+                        put = 1;
+                        move = true;
+                        way = false;
+                        break;
+                    case "Up":
+                        hantei = Hantei.Up;
+                        put = 2;
+                        move = true;
+                        way = false;
+                        break;
+                    case "Down":
+                        hantei = Hantei.Down;
+                        put = 3;
+                        move = true;
+                        way = false;
+                        break;
+                    
+                }
+            }
+            
         }
         //if (!move && other.gameObject.tag == "down")
         //{
@@ -196,6 +265,31 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("hit");
             
         //}
+    }
+
+    public void Lost()
+    {
+        way = true;
+    }
+
+    public void Right_SideR()
+    {
+        right_Side = "Down";
+    }
+
+    public void Right_SideL()
+    {
+        right_Side = "Up";
+    }
+
+    public void Right_SideU()
+    {
+        right_Side = "Right";
+    }
+
+    public void Right_SideD()
+    {
+        right_Side = "Left";
     }
 
     //void Adjust()
@@ -217,7 +311,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-enum Hantei
+public enum Hantei
 {
     Right,
     Left,

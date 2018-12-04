@@ -18,6 +18,8 @@ TagManager:
   - Goal
   - Drop
   - Destroy
+  - Obstacle
+  - Obstacle_D
   layers:
   - Default
   - TransparentFX
