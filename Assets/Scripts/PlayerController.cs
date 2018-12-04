@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject reset;
 
-    
+    public GameObject title;
 
 
 
@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
         move = true;
         start.SetActive(false);
         reset.SetActive(true);
+        title.SetActive(false);
     }
 
     public void Stagereset()
