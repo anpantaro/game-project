@@ -43,11 +43,12 @@ public class PlayerController : MonoBehaviour
     
 
     public GameObject start;
-
     public GameObject reset;
-
     public GameObject title;
+    public GameObject map;
+    public GameObject mapReset;
 
+    public GameObject camera;
 
 
     public string right_Side;
@@ -306,6 +307,26 @@ public class PlayerController : MonoBehaviour
 
     //    }
     //}
+
+    public void Confirmation()
+    {
+        map.SetActive(false);
+        start.SetActive(false);
+        title.SetActive(false);
+        mapReset.SetActive(true);
+        camera.GetComponent<Swipe>().enabled = true;
+        camera.GetComponent<FollowPlayer>().enabled = false;
+    }
+
+    public void MapReset()
+    {
+        map.SetActive(true);
+        start.SetActive(true);
+        title.SetActive(true);
+        mapReset.SetActive(false);
+        camera.GetComponent<Swipe>().enabled = false;
+        camera.GetComponent<FollowPlayer>().enabled = true;
+    }
 
 }
 
