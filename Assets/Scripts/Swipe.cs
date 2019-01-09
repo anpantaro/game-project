@@ -9,25 +9,40 @@ public class Swipe : MonoBehaviour {
     private Vector3 lastMousePosition;
     private Vector3 newPosition = new Vector3(0, 0, 0);
 
-   
+    public float x_Min;
+    public float x_Max;
+    public float z_Min;
+    public float z_Max;
+
+
+    
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // マウスクリック開始(マウスダウン)時にカメラの角度を保持(Z軸には回転させないため).
-            newPosition = MainCamera.transform.position;
-            lastMousePosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            // マウスの移動量分カメラを回転させる.
-            newPosition.x += (Input.mousePosition.x - lastMousePosition.x) * 0.1f;
-            newPosition.z += (Input.mousePosition.y - lastMousePosition.y) * 0.1f;
-            MainCamera.gameObject.transform.position = newPosition;
+        var phase = GodTouch.GetPhase();
+        var pos = GodTouch.GetPosition();
+        var delta = GodTouch.GetDeltaPosition();
 
-            lastMousePosition = Input.mousePosition;
+        switch (phase)
+        {
+            case GodPhase.Began:
+                newPosition = MainCamera.transform.position;
+                
+                lastMousePosition = Input.mousePosition;
+                break;
+            case GodPhase.Moved:
+                newPosition.x += (Input.mousePosition.x - lastMousePosition.x) * 0.1f;
+                newPosition.z += (Input.mousePosition.y - lastMousePosition.y) * 0.1f;
+                newPosition.x = Mathf.Clamp(newPosition.x, x_Min, x_Max);
+                newPosition.z = Mathf.Clamp(newPosition.z, z_Min, z_Max);
+                MainCamera.gameObject.transform.position = newPosition;
+
+                lastMousePosition = Input.mousePosition;
+                break;
         }
+
+
+        
 
     }
 
