@@ -895,7 +895,7 @@ MonoBehaviour:
   tag: Normal
   mat: {fileID: 2100000, guid: 29cdfe6be0373dc4d8a83eb127757cb8, type: 2}
   playercotroller: {fileID: 1307737669}
-  remaining: 01000000020000000300000004000000
+  remaining: 01000000000000000100000001000000
   selecting:
   - {fileID: 1654641501}
   - {fileID: 919191739}
