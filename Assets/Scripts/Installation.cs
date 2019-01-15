@@ -22,6 +22,9 @@ public class Installation : MonoBehaviour {
 
     float maxDistance = 15;
 
+    public GameObject se;
+    private AudioSource sound1;
+
 
     [SerializeField] GameObject[] selecting;
 
@@ -30,13 +33,8 @@ public class Installation : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        /*remaining = new int[4]
-        {
-            2,
-            2,
-            2,
-            2
-        };*/
+        sound1 = se.GetComponent<AudioSource>();
+
         for (int i = 0; i < 4; i++)
         {
             text[i].text = remaining[i].ToString();
@@ -114,6 +112,7 @@ public class Installation : MonoBehaviour {
                         hit.collider.GetComponent<Renderer>().material = mat;
                         remaining[(int)gimmick]--;
                         text[(int)gimmick].text = remaining[(int)gimmick].ToString();
+                        sound1.PlayOneShot(sound1.clip);
                         if (remaining[(int)gimmick ] == 0)
                         {
                             selecting[(int)gimmick].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 100.0f / 255.0f);
