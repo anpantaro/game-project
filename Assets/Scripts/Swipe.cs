@@ -31,8 +31,8 @@ public class Swipe : MonoBehaviour {
                 lastMousePosition = Input.mousePosition;
                 break;
             case GodPhase.Moved:
-                newPosition.x += (Input.mousePosition.x - lastMousePosition.x) * 0.1f;
-                newPosition.z += (Input.mousePosition.y - lastMousePosition.y) * 0.1f;
+                newPosition.x -= (Input.mousePosition.x - lastMousePosition.x) * 0.1f;
+                newPosition.z -= (Input.mousePosition.y - lastMousePosition.y) * 0.1f;
                 newPosition.x = Mathf.Clamp(newPosition.x, x_Min, x_Max);
                 newPosition.z = Mathf.Clamp(newPosition.z, z_Min, z_Max);
                 MainCamera.gameObject.transform.position = newPosition;

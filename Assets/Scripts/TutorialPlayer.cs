@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
-{
+public class TutorialPlayer : MonoBehaviour {
 
     float MOVEX = 0.0f; // x軸方向に１マス移動するときの距離
     float MOVEY = 0.0f; // y軸方向に１マス移動するときの距離
@@ -26,13 +25,13 @@ public class PlayerController : MonoBehaviour
 
     Hantei hantei = Hantei.Right;
 
-   
+
 
     bool move = false;
     private bool osita = false;
 
     private bool way = false;
-    
+
 
     public bool Osita
     {
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
         private set { this.osita = value; }
     }
 
-    
+
 
     public GameObject start;
     public GameObject reset;
@@ -61,11 +60,20 @@ public class PlayerController : MonoBehaviour
         private set { this.put = value; }
     }
 
+    private bool stop = false;
+    int count;
+
+    public bool Stop
+    {
+        get { return this.stop; }
+        private set { this.stop = value; }
+    }
+
     // Use this for initialization
     void Start()
     {
         //target = transform.position;
-        
+
     }
 
     // Update is called once per frame
@@ -75,8 +83,17 @@ public class PlayerController : MonoBehaviour
 
         if (move)
         {
-            Move();
+            if (!stop)
+            {
+                Move();
+            }
+            else
+            {
+                
+            }
             
+            
+
         }
 
 
@@ -100,13 +117,13 @@ public class PlayerController : MonoBehaviour
 
             timeElapsed = 0.0f;
         }*/
-        
+
         switch (hantei)
         {
             case Hantei.Right:
                 transform.position += transform.right * Time.deltaTime;
-                kyori +=Time.deltaTime;
-                
+                kyori += Time.deltaTime;
+
                 if (kyori >= haba)
                 {
                     yoko++;
@@ -114,8 +131,9 @@ public class PlayerController : MonoBehaviour
                     transform.position = new Vector3(haba * yoko, 1.0f, haba * tate);
                     kyori = 0.0f;
                     move = false;
+                    count++;
                 }
-                 break;
+                break;
             case Hantei.Left:
 
                 transform.position -= transform.right * Time.deltaTime;
@@ -141,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case Hantei.Down:
-                
+
                 transform.position -= transform.forward * Time.deltaTime;
                 kyori += Time.deltaTime;
                 if (kyori >= haba)
@@ -154,7 +172,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
         }
-        
+
 
     }
     public void playerstart()
@@ -175,8 +193,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        
-        if (osita && !move )
+
+        if (osita && !move)
         {
             if (!way)
             {
@@ -185,7 +203,12 @@ public class PlayerController : MonoBehaviour
 
                     case "Normal":
                         Debug.Log("hit");
+                        if(count == 2)
+                        {
+                            stop = true;
+                        }
                         move = true;
+
                         break;
                     case "Right":
                         hantei = Hantei.Right;
@@ -230,7 +253,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                
+
                 switch (right_Side)
                 {
                     case "Right":
@@ -257,16 +280,16 @@ public class PlayerController : MonoBehaviour
                         move = true;
                         way = false;
                         break;
-                    
+
                 }
             }
-            
+
         }
         //if (!move && other.gameObject.tag == "down")
         //{
         //    hantei = Hantei.Down;
         //    Debug.Log("hit");
-            
+
         //}
     }
 
@@ -331,13 +354,3 @@ public class PlayerController : MonoBehaviour
 
 }
 
-
-
-
-public enum Hantei
-{
-    Right,
-    Left,
-    Up,
-    Down
-}
