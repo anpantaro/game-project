@@ -23,7 +23,8 @@ public class TutorialGimmick : MonoBehaviour
     public void Button(int gimmickNum)
     {
         bool ositaka = tutorialPlayer.Osita;
-        if (ositaka)
+        bool stopka = tutorialPlayer.Stop;
+        if (ositaka && stopka)
         {
             TutorialInst.gimmickButton = (Gimmick)gimmickNum;
         }

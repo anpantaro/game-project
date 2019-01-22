@@ -109,7 +109,7 @@ public class TutorialInst : MonoBehaviour {
 
 
                     // レイに当たったオブジェクトに何かをする
-                    if (hit.transform.tag == "Normal" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
+                    if (hit.transform.tag == "Test" && gimmick != Gimmick.Normal && remaining[(int)gimmick] != 0)
                     {
                         hit.transform.tag = tag;
                         hit.collider.GetComponent<Renderer>().material = mat;
@@ -128,6 +128,9 @@ public class TutorialInst : MonoBehaviour {
                         gimmick = Gimmick.Normal;
                         tag = gimmick.ToString();
                         mat = matArray[(int)gimmick];
+
+                        tutorialPlayer.StopReset();
+
                     }
 
                 }

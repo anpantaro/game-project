@@ -352,5 +352,10 @@ public class TutorialPlayer : MonoBehaviour {
         camera.GetComponent<FollowPlayer>().enabled = true;
     }
 
+    public void StopReset()
+    {
+        stop = false;
+    }
+
 }
 

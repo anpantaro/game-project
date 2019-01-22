@@ -20,6 +20,7 @@ TagManager:
   - Destroy
   - Obstacle
   - Obstacle_D
+  - Test
   layers:
   - Default
   - TransparentFX
