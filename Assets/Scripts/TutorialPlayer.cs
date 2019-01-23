@@ -180,7 +180,7 @@ public class TutorialPlayer : MonoBehaviour {
         osita = true;
         move = true;
         start.SetActive(false);
-        reset.SetActive(true);
+        //reset.SetActive(true);
         title.SetActive(false);
         map.SetActive(false);
     }
