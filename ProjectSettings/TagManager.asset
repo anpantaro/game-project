@@ -21,6 +21,7 @@ TagManager:
   - Obstacle
   - Obstacle_D
   - Test
+  - TutoGoal
   layers:
   - Default
   - TransparentFX

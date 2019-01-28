@@ -30,6 +30,16 @@ public class Installation : MonoBehaviour {
 
     int tmp = 0;
 
+    private bool noStop = false;
+
+    public bool NoStop
+    {
+        get { return this.noStop; }
+        private set { this.noStop = value; }
+    }
+
+    int panelCount;
+
     // Use this for initialization
     void Start ()
     {
@@ -41,7 +51,12 @@ public class Installation : MonoBehaviour {
             if(remaining[i] == 0)
             {
                 selecting[i].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 100.0f / 255.0f);
+                panelCount++;
             }
+        }
+        if(panelCount == 4)
+        {
+            noStop = true;
         }
 
     }

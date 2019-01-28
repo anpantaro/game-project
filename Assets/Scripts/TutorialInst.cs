@@ -32,6 +32,10 @@ public class TutorialInst : MonoBehaviour {
 
     int tmp = 0;
 
+    
+
+    
+
     // Use this for initialization
     void Start()
     {
@@ -43,9 +47,10 @@ public class TutorialInst : MonoBehaviour {
             if (remaining[i] == 0)
             {
                 selecting[i].GetComponentInChildren<Image>().color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 100.0f / 255.0f);
+                
             }
         }
-
+        
     }
 
     // Update is called once per frame

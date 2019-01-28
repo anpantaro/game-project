@@ -26,7 +26,7 @@ public class Direction_R : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("atari");
+           
             
             if(gameObj.tag == "Normal")
             {

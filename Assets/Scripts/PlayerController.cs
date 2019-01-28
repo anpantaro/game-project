@@ -61,10 +61,17 @@ public class PlayerController : MonoBehaviour
         private set { this.put = value; }
     }
 
+    public Installation installation;
+
+    public GameObject test;
+
+    bool tomaraiyo;
+
     // Use this for initialization
     void Start()
     {
         //target = transform.position;
+        
         
     }
 
@@ -159,12 +166,25 @@ public class PlayerController : MonoBehaviour
     }
     public void playerstart()
     {
-        osita = true;
-        move = true;
-        start.SetActive(false);
-        reset.SetActive(true);
-        title.SetActive(false);
-        map.SetActive(false);
+        tomaraiyo = installation.NoStop;
+        
+        if (tomaraiyo)
+        {
+            test.SetActive(true);
+            osita = true;
+            move = true;
+            start.SetActive(false);
+            title.SetActive(false);
+        }
+        else
+        {
+            osita = true;
+            move = true;
+            start.SetActive(false);
+            reset.SetActive(true);
+            title.SetActive(false);
+            map.SetActive(false);
+        }
     }
 
     public void Stagereset()

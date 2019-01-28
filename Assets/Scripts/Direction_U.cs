@@ -23,7 +23,7 @@ public class Direction_U : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("atari");
+
 
             if (gameObj.tag == "Normal")
             {

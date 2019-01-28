@@ -63,7 +63,7 @@ public class Flashing : MonoBehaviour
                 b += 2;
             }
 
-            if (r < 190)
+            if (r < 170)
             {
                 which = false;
             }

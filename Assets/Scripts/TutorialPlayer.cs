@@ -69,11 +69,15 @@ public class TutorialPlayer : MonoBehaviour {
         private set { this.stop = value; }
     }
 
+    public GameObject test;
+
+   
+
     // Use this for initialization
     void Start()
     {
         //target = transform.position;
-
+        
     }
 
     // Update is called once per frame
@@ -183,6 +187,7 @@ public class TutorialPlayer : MonoBehaviour {
         //reset.SetActive(true);
         title.SetActive(false);
         map.SetActive(false);
+        
     }
 
     public void Stagereset()
@@ -205,7 +210,10 @@ public class TutorialPlayer : MonoBehaviour {
                         Debug.Log("hit");
                         if(count == 2)
                         {
+                            
                             stop = true;
+                            test.SetActive(true);
+                            
                         }
                         move = true;
 
@@ -355,6 +363,7 @@ public class TutorialPlayer : MonoBehaviour {
     public void StopReset()
     {
         stop = false;
+        test.SetActive(false);
     }
 
 }
