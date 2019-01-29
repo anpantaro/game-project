@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 1195357001}
   - component: {fileID: 1195357000}
   m_Layer: 5
-  m_Name: Level2
+  m_Name: Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8534833, g: 0.99215686, b: 0.5568628, a: 1}
+  m_Color: {r: 0.5568628, g: 0.99215686, b: 0.5650435, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1085,7 +1085,7 @@ GameObject:
   - component: {fileID: 1580400170}
   - component: {fileID: 1580400169}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level2
+  m_Text: Stage2
 --- !u!222 &1810987552
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1294,7 +1294,7 @@ GameObject:
   - component: {fileID: 2110864610}
   - component: {fileID: 2110864609}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,7 +1350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level1
+  m_Text: Stage1
 --- !u!222 &2110864610
 CanvasRenderer:
   m_ObjectHideFlags: 0
